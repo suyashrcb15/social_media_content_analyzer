@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Social Media Content Analyzer</title>
+  <link rel="stylesheet" href="/static/css/style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Social Media Content Analyzer</h1>
+    <div id="uploader" class="uploader">
+      <form id="uploadForm">
+        <div class="drop-area" id="drop-area">
+          <p>Drag & drop a PDF or image here, or click to select</p>
+          <input type="file" id="fileInput" name="file" accept=".pdf,image/*" />
+        </div>
+        <button type="submit" id="uploadBtn">Upload & Analyze</button>
+      </form>
+    </div>
+
+    <div id="loading" class="hidden">Processing... ⏳</div>
+
+    <h2>Extracted Text</h2>
+    <pre id="extractedText" class="box"></pre>
+
+    <h2>AI Recommendations</h2>
+    <div id="recommendations" class="box"></div>
+
+    <h2>Approach (200 words)</h2>
+    <p id="approach" class="box"></p>
+  </div>
+
+  <script src="/static/js/app.js"></script>
+</body>
+</html>

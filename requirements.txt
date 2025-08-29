@@ -1,0 +1,7 @@
+
+Flask>=2.0
+Werkzeug>=2.0
+Pillow
+pytesseract
+PyMuPDF
+requests

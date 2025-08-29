@@ -1,0 +1,11 @@
+
+body{font-family:Inter,Arial,Helvetica,sans-serif;background:#f5f7fb;color:#111;margin:0;padding:24px}
+.container{max-width:900px;margin:0 auto;background:white;padding:24px;border-radius:12px;box-shadow:0 6px 30px rgba(20,30,60,0.08)}
+h1{text-align:center;margin-bottom:8px}
+.uploader{margin-bottom:12px}
+.drop-area{border:2px dashed #cbd5e1;padding:24px;border-radius:8px;text-align:center;cursor:pointer;position:relative}
+.drop-area input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer}
+button{background:#1f6feb;color:white;padding:10px 16px;border-radius:8px;border:0;cursor:pointer}
+.box{background:#f8fafc;padding:12px;border-radius:8px;min-height:60px;white-space:pre-wrap}
+.hidden{display:none}
+#recommendations ul{padding-left:18px}
