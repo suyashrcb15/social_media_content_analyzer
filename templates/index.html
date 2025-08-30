@@ -3,34 +3,228 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Social Media Content Analyzer</title>
+  <title>📊 Social Media Content Analyzer</title>
   <link rel="stylesheet" href="/static/css/style.css" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: url("/static/images/bg.jpg") no-repeat center center fixed;
+      background-size: cover;
+      color: #333;
+    }
+
+    .dashboard {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      grid-gap: 20px;
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 20px;
+      background: rgba(255,255,255,0.9);
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    }
+
+    .dashboard h1 {
+      grid-column: 1 / -1;
+      text-align: center;
+      color: #222;
+      margin-bottom: 10px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 10px;
+      padding: 15px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+    }
+
+    .card h2 {
+      margin-top: 0;
+      font-size: 18px;
+      border-bottom: 2px solid #eee;
+      padding-bottom: 8px;
+      margin-bottom: 12px;
+    }
+
+    #uploader {
+      text-align: center;
+      padding: 20px;
+      border: 2px dashed #ccc;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    #uploadBtn {
+      margin-top: 10px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      background: #4CAF50;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    #uploadBtn:hover {
+      background: #45a049;
+    }
+
+    #previewImage {
+      max-width: 100%;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      padding: 5px;
+      display: none;
+    }
+
+    #previewPDF {
+      width: 100%;
+      height: 300px;
+      border: none;
+      display: none;
+    }
+
+    .metrics {
+      display: flex;
+      justify-content: space-around;
+      font-size: 18px;
+    }
+
+    .metric-box {
+      text-align: center;
+      flex: 1;
+      margin: 0 10px;
+      background: #f8f9fa;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    }
+
+    .metric-value {
+      font-size: 22px;
+      font-weight: bold;
+      color: #4CAF50;
+    }
+
+    pre.box, .box {
+      background: #f9f9f9;
+      border: 1px solid #ddd;
+      padding: 10px;
+      border-radius: 8px;
+      overflow-x: auto;
+    }
+
+    #loading {
+      text-align: center;
+      font-weight: bold;
+      color: #d35400;
+    }
+  </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Social Media Content Analyzer</h1>
-    <div id="uploader" class="uploader">
-      <form id="uploadForm">
-        <div class="drop-area" id="drop-area">
-          <p>Drag & drop a PDF or image here, or click to select</p>
-          <input type="file" id="fileInput" name="file" accept=".pdf,image/*" />
-        </div>
-        <button type="submit" id="uploadBtn">Upload & Analyze</button>
-      </form>
+  <div class="dashboard">
+    <h1>📊 Social Media Content Analyzer</h1>
+
+    <!-- Left column -->
+    <div>
+      <div class="card">
+        <h2>Upload Post</h2>
+        <form id="uploadForm">
+          <div id="uploader">
+            <p>Drag & drop a PDF or Image here</p>
+            <input type="file" id="fileInput" name="file" accept=".pdf,image/*" />
+          </div>
+          <button type="submit" id="uploadBtn">Analyze</button>
+        </form>
+      </div>
+
+      <div class="card">
+        <h2>Preview</h2>
+        <p id="previewMessage" style="display:none; font-weight:bold; color:green;">
+          File selected. Ready to analyze.
+        </p>
+        <img id="previewImage" src="" alt="Image Preview" />
+        <iframe id="previewPDF"></iframe>
+      </div>
+
+      <div class="card">
+        <h2>Approach (200 words)</h2>
+        <p id="approach" class="box"></p>
+      </div>
     </div>
 
-    <div id="loading" class="hidden">Processing... ⏳</div>
+    <!-- Right column -->
+    <div>
+      <div id="loading" class="hidden">Processing... ⏳</div>
 
-    <h2>Extracted Text</h2>
-    <pre id="extractedText" class="box"></pre>
+      <div class="card">
+        <h2>Extracted Text</h2>
+        <pre id="extractedText" class="box"></pre>
+      </div>
 
-    <h2>AI Recommendations</h2>
-    <div id="recommendations" class="box"></div>
+      <div class="card">
+        <h2>Engagement Metrics</h2>
+        <div class="metrics">
+          <div class="metric-box">
+            Likes <div class="metric-value" id="likesCount">0</div>
+          </div>
+          <div class="metric-box">
+            Comments <div class="metric-value" id="commentsCount">0</div>
+          </div>
+        </div>
+      </div>
 
-    <h2>Approach (200 words)</h2>
-    <p id="approach" class="box"></p>
+      <div class="card">
+        <h2>Updated Metrics (After AI)</h2>
+        <div class="metrics">
+          <div class="metric-box">
+            Likes <div class="metric-value" id="updatedLikesCount">0</div>
+          </div>
+          <div class="metric-box">
+            Comments <div class="metric-value" id="updatedCommentsCount">0</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>AI Recommendations</h2>
+        <div id="recommendations" class="box"></div>
+      </div>
+    </div>
   </div>
 
   <script src="/static/js/app.js"></script>
+  <script>
+    const fileInput = document.getElementById("fileInput");
+    const previewImage = document.getElementById("previewImage");
+    const previewPDF = document.getElementById("previewPDF");
+    const previewMessage = document.getElementById("previewMessage");
+
+    fileInput.addEventListener("change", function () {
+      const file = this.files[0];
+      if (!file) return;
+
+      const fileURL = URL.createObjectURL(file);
+      previewMessage.style.display = "block";
+
+      if (file.type.startsWith("image/")) {
+        previewImage.src = fileURL;
+        previewImage.style.display = "block";
+        previewPDF.style.display = "none";
+      } else if (file.type === "application/pdf") {
+        previewPDF.src = fileURL;
+        previewPDF.style.display = "block";
+        previewImage.style.display = "none";
+      } else {
+        previewImage.style.display = "none";
+        previewPDF.style.display = "none";
+      }
+    });
+  </script>
 </body>
 </html>
+
