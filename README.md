@@ -38,6 +38,17 @@ This solution emphasizes clarity, ease of deployment, and extensibility. Develop
    ```
 5. Open http://127.0.0.1:5000 in your browser.
 
+## Outcome of the Project
+
+### Dashboard View
+![Text Extraction](https://github.com/user-attachments/assets/b8f13da5-5de3-43d0-af04-2f856f670669)
+
+
+### Upload Preview
+![Recommendations for More Engagement improvements](https://github.com/user-attachments/assets/e6812a7c-a70b-404d-a2a3-f1a2aa9fa97b)
+
+
+
 ## Notes
 - The `call_gemini_for_recommendations` function uses a placeholder URL. Please replace with the official Gemini REST endpoint and adapt the request/response parsing per Google's docs.
 - This project focuses on clarity and extensibility. You can add persistent storage, user accounts, or switch to a hosted AI provider easily.
