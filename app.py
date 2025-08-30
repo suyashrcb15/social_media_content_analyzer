@@ -6,6 +6,11 @@ import requests
 import json
 import re
 from dotenv import load_dotenv
+import pytesseract
+
+# Linux path after installation
+pytesseract.pytesseract.tesseract_cmd = "/usr/bin/tesseract"
+
 import random
 
 # Load environment variables from .env
