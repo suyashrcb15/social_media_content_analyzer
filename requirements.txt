@@ -5,3 +5,4 @@ pytesseract
 PyMuPDF
 requests
 gunicorn
+python-dotenv
