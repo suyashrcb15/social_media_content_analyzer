@@ -1,9 +1,9 @@
 # Use a lightweight Python base image
 FROM python:3.13-slim
 
-# Install system dependencies
+# Install system dependencies (only tesseract-ocr)
 RUN apt-get update && \
-    apt-get install -y tesseract-ocr libgl1-mesa-glx && \
+    apt-get install -y tesseract-ocr && \
     rm -rf /var/lib/apt/lists/*
 
 # Set working directory
