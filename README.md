@@ -3,6 +3,15 @@
 
 A lightweight Flask app that accepts PDFs and images, extracts text, and provides AI-driven engagement recommendations.
 
+## Approach
+
+I developed a lightweight Flask web application that allows users to upload PDFs and images to automatically extract text and generate actionable engagement insights. For PDFs, text extraction is handled using PyMuPDF, while images are processed with Tesseract OCR. The extracted content is then sent to an AI service, which provides recommendations for improving social media engagement, including optimizing post structure, captions, and hashtags.
+
+The frontend features a clean, single-page HTML interface with drag-and-drop uploads, live previews for images and PDFs, and clear loading indicators, ensuring a smooth and responsive experience on both desktop and mobile devices. The backend provides a RESTful endpoint for requesting AI recommendations and includes error handling for unsupported file types or extraction issues, maintaining reliability and user confidence.
+
+This solution emphasizes clarity, ease of deployment, and extensibility. Developers can easily swap the AI integration, add user authentication, or expand analytics. The application is lightweight, can run locally, or be deployed on cloud platforms, making it accessible to content creators, marketers, and small businesses seeking immediate, AI-driven feedback on their posts.
+
+
 ## Features
 - Upload PDFs and images (drag-and-drop or file picker)
 - Extract text from PDFs (PyMuPDF) and images (Tesseract OCR)
