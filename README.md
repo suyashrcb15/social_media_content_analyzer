@@ -38,8 +38,11 @@ This solution emphasizes clarity, ease of deployment, and extensibility. Develop
    ```
 5. Open http://127.0.0.1:5000 in your browser.
 
-## Live Link of Project
-![Live Link](https://social-media-content-analyzer-4.onrender.com/)
+   
+## 🚀 Live Demo
+
+Check out the live project here: [Social Media Analyzer](https://social-media-content-analyzer-4.onrender.com/)
+
 
 ## Outcome of the Project
 
